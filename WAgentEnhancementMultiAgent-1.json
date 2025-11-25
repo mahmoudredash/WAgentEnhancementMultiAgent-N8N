@@ -1,0 +1,1830 @@
+{
+  "name": "WAgentEnhancementMultiAgent",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Input",
+        "height": 640,
+        "width": 1136
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -784
+      ],
+      "id": "d3a764b2-452f-4b62-86ed-5827153b8db0",
+      "name": "Sticky Note",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Web Search Agent",
+        "height": 416,
+        "width": 640,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -128
+      ],
+      "id": "8b5621bd-3bf2-4907-960c-2bf368838dbc",
+      "name": "Sticky Note1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## E-Mail Agent",
+        "height": 416,
+        "width": 896,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        496,
+        -128
+      ],
+      "id": "67d323d3-5c5a-48c2-8a22-511b603018a3",
+      "name": "Sticky Note2",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Calender Agent",
+        "height": 416,
+        "width": 608,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        -128
+      ],
+      "id": "bbd2c789-d60d-45ee-9ae1-fbae322c9d4a",
+      "name": "Sticky Note3",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## OutPut",
+        "height": 640,
+        "width": 544
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        -784
+      ],
+      "id": "158011d8-1464-4bc3-8674-9524d811d651",
+      "name": "Sticky Note4",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Orchestrator Agent",
+        "height": 336,
+        "width": 576,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -784
+      ],
+      "id": "21bd2049-b7e3-40e1-bd3d-1cf5a4ef61ab",
+      "name": "Sticky Note5",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Social Media Agent",
+        "height": 288,
+        "width": 576,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -432
+      ],
+      "id": "5905b01e-335a-4579-b15d-7c2df9e665fb",
+      "name": "Sticky Note6",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        -480
+      ],
+      "id": "5c820e9d-d768-4ddf-9b88-a6add3e6917b",
+      "name": "WhatsApp Trigger",
+      "webhookId": "a6add11b-5961-45bf-978c-ef7addda263a",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "ert9R9G3NovwdnDC",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "91f29de5-2220-4769-8378-80fdbc9a29ed"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "9745b8b5-a6fc-4358-8d08-c0c2ec3fdba4",
+                    "leftValue": "={{ $json.messages[0].type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a15fb3a1-2569-4df5-a483-1728f97a23fc",
+                    "leftValue": "={{ $json.messages[0].type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Image"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": 0
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        128,
+        -512
+      ],
+      "id": "94515f1e-4dc8-4364-ac8f-e54e2359d849",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "content": "### Text",
+        "width": 592,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -688
+      ],
+      "id": "41dba86f-06cc-4b60-8c92-bae6a3f9023a",
+      "name": "Sticky Note7",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "### Image",
+        "width": 592,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -336
+      ],
+      "id": "559fbda3-6ca5-42ea-923d-77d6507b6b33",
+      "name": "Sticky Note8",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "### Voice",
+        "width": 592,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -512
+      ],
+      "id": "44bb51b1-acd5-4a81-b83d-f7a17aab17df",
+      "name": "Sticky Note9",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "00410c5f-92d3-47ba-b74c-05a4e03550ca",
+              "name": "text",
+              "value": "={{ $json.messages[0].text.body }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        -672
+      ],
+      "id": "0a3a372b-3963-4b13-ae92-6de687babee8",
+      "name": "Text"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.messages[0].audio.id }}"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        320,
+        -496
+      ],
+      "id": "fd76bbf6-e389-4cd4-bb20-7dbaf014b396",
+      "name": "Download audio url",
+      "webhookId": "3f89b58b-a8b0-4d13-998d-8198dd8790c3",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "6Iyis9PKeKkFY8SW",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        448,
+        -496
+      ],
+      "id": "8a94fee5-ee2a-4eb8-8bf9-e8f8b47a7fdd",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "heANT1MEfcL1q1GE",
+          "name": "Header Auth account"
+        },
+        "httpHeaderAuth": {
+          "id": "oLUUUyaSkf5kzX3p",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-pro",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-pro"
+        },
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        576,
+        -496
+      ],
+      "id": "d3ee5107-02b0-4fd6-b465-f5a2a6819f84",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "HDA0yI7NfeIAeC46",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "00410c5f-92d3-47ba-b74c-05a4e03550ca",
+              "name": "text",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        704,
+        -496
+      ],
+      "id": "ee2f44e7-8c99-47e4-8f04-8e7ec7e44509",
+      "name": "Text1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "00410c5f-92d3-47ba-b74c-05a4e03550ca",
+              "name": "text",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        704,
+        -320
+      ],
+      "id": "5f283940-be49-4a6f-9128-bad9d41acdcc",
+      "name": "Text2"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.messages[0].image.id }}"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        320,
+        -320
+      ],
+      "id": "34fa0793-ef91-45c3-a485-265389ef85a3",
+      "name": "Download Image url1",
+      "webhookId": "3f89b58b-a8b0-4d13-998d-8198dd8790c3",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "6Iyis9PKeKkFY8SW",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-pro",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-pro"
+        },
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        576,
+        -320
+      ],
+      "id": "5e655ed8-cd8e-4b4d-815c-4db8448df9a5",
+      "name": "Analyze an image",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "HDA0yI7NfeIAeC46",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "options": {
+          "systemMessage": "=## Overview\nYou are a WhatsApp assistant and orchestrator for multiple agents. Your job is to process WhatsApp input, route it to the correct sub-agent, and return plain-text responses. The current date and time is {{ $now.toString() }}\n\n## Tools\n- ThnIK Tool: For logic, routing decisions, and workflow reasoning\n- Search Agent: For web queries and article/data retrieval\n- Social Media Agent: For creating posts or social actions\n- Gmail Agent: For reading, sending, and managing emails\n- Calendar Agent: For creating, updating, and retrieving events\n\n## Rules\n- Always return plain text\n- Be neutral and technical\n- Respond only with what is needed for routing or final output\n\n## Instructions\n1) Analyze WhatsApp input  \n2) Decide which sub-agent should act  \n3) Call the correct tool  \n4) Return the final plain-text result\n\n## Examples\n1)\nInput: \"Search the latest AI news\"\n- Action: Use Search Agent → get article data\n- Output: Plain-text summary"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1056,
+        -736
+      ],
+      "id": "631998f1-eccc-4789-8140-2c95b7e65103",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        992,
+        -592
+      ],
+      "id": "d0cbf470-e602-4e95-b3f5-bd0805eb2579",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "HDA0yI7NfeIAeC46",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('WhatsApp Trigger').item.json.messages[0].from }} ",
+        "contextWindowLength": 5000
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1104,
+        -576
+      ],
+      "id": "b0968b62-4d96-4761-a66d-9a94c8c59159",
+      "name": "Simple Memory",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b70722e2-0ca2-4b8f-a813-c319ea24ce83",
+              "leftValue": "={{ $('WhatsApp Trigger').item.json.messages[0].type }}",
+              "rightValue": "text",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1344,
+        -720
+      ],
+      "id": "fc712461-aef1-4e0d-a8f3-fe45b9db8099",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "### Voice",
+        "width": 496,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        -656
+      ],
+      "id": "1a8ecbc8-6ef2-45b5-ad4b-ab8439ab242a",
+      "name": "Sticky Note10",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "### Text",
+        "width": 464,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        -448
+      ],
+      "id": "4f467840-406c-48c1-af8c-8f6234471932",
+      "name": "Sticky Note11",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "897574546768334",
+        "recipientPhoneNumber": "201013919380",
+        "messageType": "audio",
+        "mediaPath": "useMedian8n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        1824,
+        -640
+      ],
+      "id": "b2d71660-7d35-40b8-910e-25d85a7c8f6b",
+      "name": "Send message",
+      "webhookId": "e6d248e4-2d3a-415f-bf2a-ac29c7764228",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "6Iyis9PKeKkFY8SW",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "897574546768334",
+        "recipientPhoneNumber": "201013919380",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        1712,
+        -432
+      ],
+      "id": "e4d768c6-adcb-46de-95e7-4eee7f25b9b2",
+      "name": "Send message1",
+      "webhookId": "e6d248e4-2d3a-415f-bf2a-ac29c7764228",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "6Iyis9PKeKkFY8SW",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1.1,
+      "position": [
+        1264,
+        -576
+      ],
+      "id": "e81dc3b6-bc19-4058-a429-765bb53ee981",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Call this agent if you want to create, draft, or prepare anything related to a social media post.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "## Overview\nYou are a Social Media Agent that creates posts. Your job is to produce concise text for X posts. The current date and time is {{ $now.toString() }}\n\n## Tools\n- X Post Tool: Publish or draft posts\n\n## Rules\n- Always return plain text\n- Keep posts within platform limits\n- Neutral, technical tone\n\n## Instructions\n1) Interpret request\n2) Draft post content\n3) Send text to X Post Tool\n\n## Examples\nInput: \"Post about new workflow automation\"\n- Action: Use X Post Tool\n- Output: Plain-text post text\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        -400
+      ],
+      "id": "89049459-cd9f-456d-996b-43b1d7f5c84e",
+      "name": "Scocil_Media"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        976,
+        -288
+      ],
+      "id": "16562912-7870-4fb1-a674-9c3ed685c528",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "LjyPfTJIfWstrlqt",
+          "name": "n8n1-start"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.twitterTool",
+      "typeVersion": 2,
+      "position": [
+        1136,
+        -304
+      ],
+      "id": "81ab2a97-a2a7-45da-891d-cbd341b183cf",
+      "name": "Create Tweet in X",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1vDczHMu8NfSj9UFXgAOFi9x10G6l_1n-vcn7NQD-ZUs",
+          "mode": "list",
+          "cachedResultName": "X-Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vDczHMu8NfSj9UFXgAOFi9x10G6l_1n-vcn7NQD-ZUs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vDczHMu8NfSj9UFXgAOFi9x10G6l_1n-vcn7NQD-ZUs/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Posts": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Posts__using_to_match_', ``, 'string') }}",
+            "Date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Date', ``, 'string') }}",
+            "Theme": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Theme', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "Posts"
+          ],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Theme",
+              "displayName": "Theme",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Posts",
+              "displayName": "Posts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1392,
+        -288
+      ],
+      "id": "19ae1e60-c2da-42f9-8315-b610d60d4043",
+      "name": "X post",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "vEDa6xf7CsKQ5qoW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Call this agent if you want to create events, update events, delete events, or retrieve anything from your calendar.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=## Overview\nYou are a Calendar Agent that manages events. Your job is to create, update, delete, or fetch events. The current date and time is {{ $now.toString() }}\n\n## Tools\n- Create Event: Add new events\n- Update Event: Modify existing events\n- Delete Event: Remove events\n- Get Events: Retrieve event details\n\n## Rules\n- Always return plain text\n- Neutral, technical tone\n\n## Instructions\n1) Detect the event-related intent\n2) Use the correct calendar tool\n3) Return plain-text event info\n\n## Examples\nInput: \"Add meeting tomorrow at 3pm\"\n- Action: Use Create Event\n- Output: Plain-text confirmation\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        1616,
+        -96
+      ],
+      "id": "7e53b55c-91dd-4943-9926-583dde8ee75a",
+      "name": "Calender Agent"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Call this agent if you want to read emails, send emails, delete messages, or manage anything in your inbox.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=## Overview\nYou are a Gmail Agent that manages email actions. Your job is to read, send, delete, or fetch emails. The current date and time is {{ $now.toString() }}\n\n## Tools\n- Get Emails: Retrieve inbox messages\n- Send Email: Send formatted emails\n- Delete Email: Remove emails\n- Mark as Read: Update email status\n\n## Rules\n- Always return plain text\n- Be technical and concise\n\n## Instructions\n1) Interpret email request\n2) Use the correct Gmail tool\n3) Return plain-text confirmation or email content\n\n## Examples\nInput: \"Send report to John\"\n- Action: Use Send Email\n- Output: Plain-text confirmation\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        608,
+        -80
+      ],
+      "id": "b8904f08-ef9b-4a5e-8409-7e94c9adc942",
+      "name": "E-mail Agent"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Call this agent if you want to search the web, retrieve articles, gather factual information, or summarize online content.",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=## Overview\nYou are a Search Agent that retrieves accurate web information. Your job is to perform searches and return plain-text summaries. The current date and time is {{ $now.toString() }}\n\n## Tools\n- Wikipedia: Retrieve encyclopedia articles\n- Google Search: General web search\n- Hacker News: Fetch tech-related articles\n\n## Rules\n- Always return plain text\n- Keep answers concise and factual\n\n## Instructions\n1) Execute the search\n2) Summarize results clearly\n3) Return plain text only\n\n## Examples\nInput: \"Find info on quantum computing\"\n- Action: Use Google Search\n- Output: Plain-text summary\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        -80
+      ],
+      "id": "3f87d126-2cd4-4d7d-8db5-251ba473221a",
+      "name": "Search Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        112
+      ],
+      "id": "30de3b8a-af4e-4370-b3db-b4d215cbe7f9",
+      "name": "Groq Chat Model1",
+      "credentials": {
+        "groqApi": {
+          "id": "LjyPfTJIfWstrlqt",
+          "name": "n8n1-start"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "articleId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Article_ID', ``, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.hackerNewsTool",
+      "typeVersion": 1,
+      "position": [
+        112,
+        112
+      ],
+      "id": "57eb25ef-140b-4112-b996-00959ee978e5",
+      "name": "Get an article in Hacker News"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
+      "typeVersion": 1,
+      "position": [
+        224,
+        128
+      ],
+      "id": "8c4e71a5-edd4-45a9-9b7c-1360254bcba5",
+      "name": "Wikipedia"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        336,
+        128
+      ],
+      "id": "7ab22df4-ea06-403a-a98f-5aa4be9092ee",
+      "name": "Google shearch",
+      "credentials": {
+        "serpApi": {
+          "id": "aniD2ee0JDOjpp5h",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        528,
+        96
+      ],
+      "id": "25ff3f82-99f0-4874-9235-1e8e0473e64d",
+      "name": "Groq Chat Model2",
+      "credentials": {
+        "groqApi": {
+          "id": "LjyPfTJIfWstrlqt",
+          "name": "n8n1-start"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        656,
+        144
+      ],
+      "id": "71db6cfe-5bc6-4740-8029-021c236387e7",
+      "name": "Send a message",
+      "webhookId": "9c6a3fea-b4d5-4e68-9fae-6a01e0889a3e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FB2Ywq41Pp2cqaEn",
+          "name": "Gmail clander mahmoudredash"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        128
+      ],
+      "id": "6bbb7eac-2646-41e9-9cfc-77182c69d552",
+      "name": "Delete an e-mail",
+      "webhookId": "5c8833bb-060c-4e13-a800-719d810ae746",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FB2Ywq41Pp2cqaEn",
+          "name": "Gmail clander mahmoudredash"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "simple": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Simplify', ``, 'boolean') }}",
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        944,
+        128
+      ],
+      "id": "360f1f44-e502-45c7-9522-919df2d18b8a",
+      "name": "Get many e-mail",
+      "webhookId": "440a6a20-cb7c-4f26-9964-e1865bb6c6a7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FB2Ywq41Pp2cqaEn",
+          "name": "Gmail clander mahmoudredash"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1088,
+        128
+      ],
+      "id": "0fc2ae54-a61d-4e51-8a97-ee953096ef2e",
+      "name": "Mark as read",
+      "webhookId": "440a6a20-cb7c-4f26-9964-e1865bb6c6a7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FB2Ywq41Pp2cqaEn",
+          "name": "Gmail clander mahmoudredash"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1280,
+        -16
+      ],
+      "id": "454f23bd-8b4b-4c5a-a2b7-552fc0ee8bac",
+      "name": "Mark as read2",
+      "webhookId": "440a6a20-cb7c-4f26-9964-e1865bb6c6a7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FB2Ywq41Pp2cqaEn",
+          "name": "Gmail clander mahmoudredash"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsUnread",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1232,
+        128
+      ],
+      "id": "b78f0769-cf59-434e-a57a-a3165a5ed4ea",
+      "name": "Mark as Unread",
+      "webhookId": "440a6a20-cb7c-4f26-9964-e1865bb6c6a7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FB2Ywq41Pp2cqaEn",
+          "name": "Gmail clander mahmoudredash"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1472,
+        -48
+      ],
+      "id": "813a34f0-0b5b-4d3c-8c41-0957c06c9e18",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "HDA0yI7NfeIAeC46",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1440,
+        128
+      ],
+      "id": "813f08d2-0086-4a02-a7ce-67e1140533e8",
+      "name": "Create an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "uytP4jgYMKsMaldr",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1568,
+        144
+      ],
+      "id": "1c1acb9e-0ed8-49b4-a39b-e16dd46692dc",
+      "name": "Delete an event1",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "uytP4jgYMKsMaldr",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1696,
+        112
+      ],
+      "id": "5e4d8735-bc18-4f96-979b-776a2a581ff5",
+      "name": "Get an event2",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "uytP4jgYMKsMaldr",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1808,
+        80
+      ],
+      "id": "0da9f093-90cd-4cda-9823-3ac4cfbfa139",
+      "name": "Get Mey an event3",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "uytP4jgYMKsMaldr",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "useDefaultReminders": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Use_Default_Reminders', ``, 'boolean') }}",
+        "updateFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1904,
+        -16
+      ],
+      "id": "4a8c2cbc-ed42-459a-82e7-9afba852070c",
+      "name": "Update an event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "uytP4jgYMKsMaldr",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        448,
+        -320
+      ],
+      "id": "d3e4febf-c0dc-4be1-baf0-92161cd01b23",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "heANT1MEfcL1q1GE",
+          "name": "Header Auth account"
+        },
+        "httpHeaderAuth": {
+          "id": "oLUUUyaSkf5kzX3p",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6c4c11ad-4673-4d5a-a200-c865ef287120",
+              "leftValue": "={{ $json.messages[0].from }}",
+              "rightValue": "201013919380",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "a7043dcf-a847-42ab-a7f2-e41b38ad2b7b",
+              "leftValue": "={{ $json.contacts[0].wa_id }}",
+              "rightValue": "201013919380",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -48,
+        -480
+      ],
+      "id": "36211b9b-36c0-48db-8234-b35db2e85e3f",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "voice": {
+          "__rl": true,
+          "value": "2EiwWnXFnvU5JabPnv8n",
+          "mode": "list",
+          "cachedResultName": "Clyde"
+        },
+        "text": "={{ $json.output }}",
+        "additionalOptions": {
+          "outputFormat": "opus_48000_32"
+        },
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        -640
+      ],
+      "id": "597d5df2-f77b-4d19-8949-dc8fe2f53e26",
+      "name": "Convert text to speech",
+      "notesInFlow": false,
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "gncsSg3CCudK9xPz",
+          "name": "ElevenLabs account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Analyze an image": [
+      {
+        "json": {
+          "content": {
+            "parts": [
+              {
+                "text": "This is a screenshot of a sponsored Facebook post from a user named Mahmoud Qolqala. The post is an advertisement for a \"FULL STACK MARKETING MENTORING PROGRAM.\"\n\nThe main image in the post is an infographic designed as a mind map that outlines the key areas of digital marketing covered in the program.\n\nHere's a breakdown of the infographic's content:\n\n*   **Central Figure:** A large icon of a person at the center.\n*   **Main Categories:** Branching out from the center are several key marketing disciplines:\n    *   **Digital Marketing:** Which further breaks down into:\n        *   Content Marketing\n        *   Social Media Marketing\n        *   Email Marketing\n        *   SEO (Search Engine Optimization)\n        *   ADs\n    *   **Analytics:** Which includes:\n        *   Data Analysis\n        *   Google Analytics\n        *   Reports\n    *   **Content Creation:** Which covers:\n        *   Writing\n        *   Design\n        *   Video\n    *   **Project Management**\n    *   **AI Tools**\n\nThe post includes a call-to-action button that says \"WhatsApp.\" Below the image, the post shows engagement metrics: 98 reactions, 44 comments, and 45 shares. The author, Mahmoud Qolqala, is described as an \"Entrepreneur.\""
+              }
+            ],
+            "role": "model"
+          },
+          "finishReason": "STOP",
+          "index": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download audio url",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download Image url1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download audio url": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Text1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image url1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze an image": {
+      "main": [
+        [
+          {
+            "node": "Text2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Convert text to speech",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message1": {
+      "main": [
+        []
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scocil_Media": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Scocil_Media",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Tweet in X": {
+      "ai_tool": [
+        [
+          {
+            "node": "Scocil_Media",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "X post": {
+      "ai_tool": [
+        [
+          {
+            "node": "Scocil_Media",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calender Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "E-mail Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Search Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get an article in Hacker News": {
+      "ai_tool": [
+        [
+          {
+            "node": "Search Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wikipedia": {
+      "ai_tool": [
+        [
+          {
+            "node": "Search Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google shearch": {
+      "ai_tool": [
+        [
+          {
+            "node": "Search Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "E-mail Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "ai_tool": [
+        [
+          {
+            "node": "E-mail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an e-mail": {
+      "ai_tool": [
+        [
+          {
+            "node": "E-mail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many e-mail": {
+      "ai_tool": [
+        [
+          {
+            "node": "E-mail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark as read": {
+      "ai_tool": [
+        [
+          {
+            "node": "E-mail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark as read2": {
+      "ai_tool": [
+        [
+          {
+            "node": "E-mail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark as Unread": {
+      "ai_tool": [
+        [
+          {
+            "node": "E-mail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Calender Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calender Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an event1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calender Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get an event2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calender Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Mey an event3": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calender Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update an event": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calender Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Analyze an image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert text to speech": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d89c2589-03a0-4ba8-86ac-d8b770309693",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "39aa8e4ca430079ed2f834a849b4c69a0abb2386a2d1d0ea93227187e60e548f"
+  },
+  "id": "mYpNPuG8lkdL602d",
+  "tags": []
+}
