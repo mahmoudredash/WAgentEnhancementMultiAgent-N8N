@@ -1,11 +1,3 @@
-<div align="center">
-
-# WhatsApp Multi-Agent Orchestrator  
-### (Supports Text, Voice & Images)
-
-![Workflow Screenshot](screan.png)
-
-</div>
 
 > 🌍 [Read this in Arabic](README_ar.md)
 
